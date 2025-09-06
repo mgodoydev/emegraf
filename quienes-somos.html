@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emegraf - Quiénes Somos</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emegraf</title>
+
+  <!-- FAVICONS -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <meta name="theme-color" content="#001BB7">
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="logo">Emegraf</div>
-        <nav id="menu">
-            <ul>
-                <li><a href="index.html#inicio">Inicio</a></li>
-                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                <li><a href="#footer">Contacto</a></li>
-            </ul>
-        </nav>
-        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    </header>
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="img/emegraf.png" alt="Logo Emegraf" class="logo-img">
+      <span class="logo-text">Emegraf</span>
+    </a>
 
-    <!-- QUIÉNES SOMOS -->
-    <section class="about-page">
-        <h1>Nuestra Historia</h1>
+    <nav id="menu">
+      <ul>
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+        <li><a href="#footer">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">&#9776;</div>
+  </header>
+
+  <!-- QUIÉNES SOMOS -->
+  <section class="about-page">
+    <h1>Nuestra Historia</h1>
+    <p>
+      Emegraf nació en 1991 como un taller familiar y creció hasta convertirse en una imprenta
+      conocida en la ciudad. Combinamos tecnología de última generación con un equipo
+      apasionado para brindar resultados consistentes y de alta calidad.
+    </p>
+
+    <div class="mision-vision">
+      <div class="card">
+        <h2>Misión</h2>
         <p>
-            Emegraf nació en 2005 como un pequeño taller de impresión familiar. 
-            Con esfuerzo, dedicación y pasión por la calidad, hemos crecido para 
-            convertirnos en una imprenta reconocida en la ciudad, ofreciendo 
-            soluciones de impresión innovadoras y personalizadas para empresas y particulares.
+          Proveer soluciones de impresión confiables y precisas, acompañando a nuestros clientes
+          en cada etapa de sus proyectos de comunicación visual.
         </p>
+      </div>
+      <div class="card">
+        <h2>Visión</h2>
+        <p>
+          Ser la imprenta reconocida localmente, destacándonos por innovación, excelencia
+          operativa y un servicio al cliente cercano y transparente.
+        </p>
+      </div>
+    </div>
+  </section>
 
-        <div class="mision-vision">
-            <div class="card">
-                <h2>Misión</h2>
-                <p>
-                    Brindar servicios de impresión de la más alta calidad, utilizando 
-                    tecnología moderna y un equipo comprometido, para satisfacer las 
-                    necesidades de comunicación visual de nuestros clientes.
-                </p>
-            </div>
+  <!-- FOOTER -->
+  <footer id="footer">
+    <p>&copy; 2025 Emegraf — Todos los derechos reservados</p>
+    <div class="footer-links">
+      <a href="mailto:contacto@emegraf.com">Email</a> •
+      <a href="https://wa.me/595999999999">WhatsApp</a>
+    </div>
+  </footer>
 
-            <div class="card">
-                <h2>Visión</h2>
-                <p>
-                    Ser la imprenta líder en la región, reconocida por nuestra innovación, 
-                    calidad y compromiso con el crecimiento de nuestros clientes y de nuestra comunidad.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="footer">
-        <p>&copy; 2025 Emegraf - Todos los derechos reservados</p>
-        <div class="footer-links">
-            <a href="mailto:contacto@emegraf.com">Email</a> |
-            <a href="https://wa.me/595999999999">WhatsApp</a>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

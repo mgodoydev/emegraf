@@ -1,241 +1,246 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ===========================
+   Base & Tokens de color
+=========================== */
+:root{
+  --primary:#001BB7;           /* azul principal */
+  --primary-700:#001494;       /* más oscuro */
+  --primary-50:#E8ECFF;        /* muy claro para fondos */
+  --text:#0f172a;
+  --muted:#475569;
+  --white:#ffffff;
+  --surface:#f8fafc;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+  --radius:14px;
 }
 
-/* General */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Fira Sans", Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  color:var(--text);
+  background:var(--surface);
+  line-height:1.6;
 }
 
-/* Header */
-header {
-    background: #222;
-    color: #fff;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+/* ===========================
+   Header
+=========================== */
+header{
+  position:sticky; top:0; z-index:50;
+  background:var(--white); /* Fondo blanco */
+  padding:14px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:var(--shadow);
 }
 
-header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--primary); /* Logo azul */
+  font-weight:800;
+  letter-spacing:.3px;
+  font-size:1.1rem;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+.logo-img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  display:block;
+  border-radius:8px; /* opcional */
 }
 
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
+.logo-text{
+  display:inline-block;
+  vertical-align:middle;
 }
 
-/* Botón hamburguesa (oculto en desktop) */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
+header nav ul{
+  list-style:none; display:flex; gap:24px;
 }
 
-/* Hero */
-.hero {
-    background: url("img/trabajo1.jpg") no-repeat center center/cover;
-    color: white;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    text-align: center;
-    padding: 20px;
+header nav a{
+  color:var(--primary); /* Enlaces azules */
+  text-decoration:none; font-weight:600;
+  padding:8px 10px; border-radius:10px; transition:.2s ease;
 }
 
-.hero h1 {
-    font-size: 3rem;
+header nav a:hover,
+header nav a:focus{
+  background:var(--primary-50); /* Fondo clarito en hover */
+  color:var(--primary-700);
+  outline:none;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    margin-top: 10px;
+/* Hamburguesa */
+.menu-toggle{
+  display:none;
+  cursor:pointer;
+  font-size:1.8rem;
+  line-height:1;
+  color:var(--primary); /* Azul */
 }
 
-/* Carrusel */
-.carrusel {
-    max-width: 1000px;
-    margin: 40px auto;
-    overflow: hidden;
-    position: relative;
+/* ===========================
+   Hero
+=========================== */
+.hero{
+  position:relative;
+  min-height:62vh;
+  display:grid; place-items:center; text-align:center;
+  padding:40px 16px; color:var(--white);
+  overflow:hidden;
+}
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(0,27,183,.7), rgba(0,27,183,.85)),
+    url("img/trabajo1.jpg") center/cover no-repeat;
+  filter:saturate(1.05);
+}
+.hero > *{position:relative; z-index:1}
+.hero h1{font-size:clamp(2rem, 4vw, 3rem); font-weight:900; letter-spacing:.3px}
+.hero p{margin-top:10px; font-size:clamp(1rem, 2.2vw, 1.2rem); opacity:.95}
+
+/* ===========================
+   Carrusel
+=========================== */
+.carrusel{
+  max-width:1000px;
+  margin:40px auto;
+  overflow:hidden;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  background:var(--white);
 }
 
-.slides {
-    display: flex;
-    width: 300%;
-    animation: slide 12s infinite;
+.slides{
+  display:flex;
+  width:300%;
+  animation:slide 12s infinite;
 }
 
-.slides img {
-    width: 100%;
+.slides img{
+  width:100%;
+  max-height:400px;   /* controla la altura máxima */
+  object-fit:cover;   /* recorta para no deformar */
+  display:block;
 }
 
-/* Animación */
-@keyframes slide {
-    0% { margin-left: 0; }
-    33% { margin-left: -100%; }
-    66% { margin-left: -200%; }
-    100% { margin-left: 0; }
+@keyframes slide{
+  0%{margin-left:0}
+  33%{margin-left:-100%}
+  66%{margin-left:-200%}
+  100%{margin-left:0}
 }
 
-/* Secciones */
-section {
-    padding: 50px 20px;
-    text-align: center;
+/* ===========================
+   Secciones
+=========================== */
+section{padding:56px 18px}
+.section-title{
+  text-align:center; margin-bottom:16px; font-size:clamp(1.6rem,3vw,2rem);
+  color:var(--primary-700); font-weight:800;
+}
+.section-lead{
+  text-align:center; color:var(--muted); max-width:900px; margin:0 auto 24px;
 }
 
-.about, .contact {
-    background: #f4f4f4;
-    margin-top: 20px;
+/* About (index) */
+.about,
+.contact {
+  background:var(--primary-50);
+  text-align:center;
+}
+.about p, .contact p{
+  max-width:900px; margin:10px auto; color:var(--muted)
 }
 
-.btn {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 20px;
-    background: #222;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+/* Botones */
+.btn{
+  display:inline-block;
+  margin:12px auto;
+  padding:12px 18px;
+  background:var(--primary); color:var(--white); text-decoration:none;
+  border-radius:12px; font-weight:700; transition:.2s ease; box-shadow:var(--shadow);
+  text-align:center;
+}
+.btn:hover{background:var(--primary-700); transform:translateY(-1px)}
+
+/* ===========================
+   Footer
+=========================== */
+footer{
+  background:var(--primary);
+  color:var(--white);
+  text-align:center;
+  padding:20px 16px;
+  margin-top:24px;
+}
+footer a{color:var(--white); text-decoration:underline; font-weight:600}
+
+/* ===========================
+   Página Quiénes Somos
+=========================== */
+.about-page{
+  max-width:1100px;
+  margin:auto;
+  text-align:center;
+}
+.about-page h1{
+  font-size:clamp(2rem,3.5vw,2.6rem);
+  color:var(--primary-700);
+  text-align:center;
+  margin-bottom:14px;
+}
+.about-page p{
+  color:var(--muted);
+  text-align:center;
+  max-width:900px;
+  margin:0 auto 34px;
 }
 
-.btn:hover {
-    background: #444;
+.mision-vision{
+  display:flex; gap:24px; justify-content:center; flex-wrap:wrap;
+}
+.card{
+  background:var(--white); padding:24px; border-radius:var(--radius);
+  box-shadow:var(--shadow); width:clamp(280px, 45%, 520px);
+  text-align:center;
+}
+.card h2{
+  color:var(--primary-700);
+  margin-bottom:10px;
+  text-align:center;
+}
+.card p{color:var(--text)}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 900px){
+  header nav{
+    display:none;
+    position:absolute; left:0; right:0; top:64px;
+    background:var(--white); /* también blanco en móvil */
+    padding:10px 0;
+    box-shadow:var(--shadow);
+  }
+  header nav ul{flex-direction:column; align-items:center; gap:10px}
+  header nav a{color:var(--primary)}
+  .menu-toggle{display:block}
 }
 
-/* Footer */
-footer {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-}
+@media (max-width: 520px){
+  .hero{min-height:48vh}
+  .btn{width:100%; max-width:420px}
+  .logo-text{display:none}
+  .logo-img{width:40px;height:40px}
 
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    header nav {
-        display: none;
-        width: 100%;
-        background: #222;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 10px 0;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        height: 40vh;
-        padding: 20px;
-    }
-
-    .hero h1 {
-        font-size: 1.5rem;
-    }
-
-    .btn {
-        width: 100%;
-        display: block;
-        margin: 10px auto;
-    }
-}
-/* Página Quiénes Somos */
-.about-page {
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: auto;
-    text-align: center;
-}
-
-.about-page h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #222;
-}
-
-.about-page p {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    color: #555;
-    line-height: 1.8;
-}
-
-/* Misión y Visión en cards */
-.mision-vision {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    width: 45%;
-    min-width: 280px;
-}
-
-.card h2 {
-    color: #222;
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: #444;
-    font-size: 1rem;
-}
-
-/* Footer enlaces */
-.footer-links {
-    margin-top: 10px;
-}
-
-.footer-links a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 5px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
+  /* Carrusel más chico en mobile */
+  .slides img{
+    max-height:250px;
+  }
 }
