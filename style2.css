@@ -1,0 +1,232 @@
+/* ===========================
+   Variables de color & Base
+=========================== */
+:root {
+  --primary: #001BB7;
+  --primary-700: #001494;
+  --primary-50: #E8ECFF;
+  --text: #0f172a;
+  --muted: #475569;
+  --white: #ffffff;
+  --surface: #f8fafc;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  --radius: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Fira Sans", Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  color: var(--text);
+  background: var(--surface);
+  line-height: 1.6;
+}
+
+/* ===========================
+   Header
+=========================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.logo-img { width: 48px; height: 48px; object-fit: contain; }
+.logo-text { display: inline-block; }
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+header nav a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: .2s ease;
+}
+header nav a:hover {
+  background: var(--primary-50);
+  color: var(--primary-700);
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--primary);
+}
+
+/* ===========================
+   Hero Quiénes Somos
+=========================== */
+.hero.hero-about {
+  position: relative;
+  min-height: 45vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--white);
+  background:
+    linear-gradient(180deg, rgba(0,27,183,.7), rgba(0,27,183,.85)),
+    url("img/trabajo1.jpg") center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 800px;
+  z-index: 1;
+}
+
+.hero-slogan {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  opacity: .95;
+}
+
+/* ===========================
+   About sections (Misión, Valores, Equipo)
+=========================== */
+.about-page {
+  background: var(--surface);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  color: var(--primary-700);
+  margin-bottom: 24px;
+}
+
+.section-lead {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  color: var(--muted);
+}
+
+.mision-vision {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.mision-vision .card {
+  background: var(--white);
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.mision-vision .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+}
+
+.mision-vision h2 {
+  font-size: 1.3rem;
+  color: var(--primary-700);
+  margin-bottom: 12px;
+}
+
+.mision-vision p {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ===========================
+   CTA
+=========================== */
+.cta {
+  background: var(--primary-50);
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta h2 {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  color: var(--primary-700);
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .2s ease;
+  box-shadow: var(--shadow);
+}
+.btn:hover { background: var(--primary-700); transform: translateY(-2px); }
+
+/* ===========================
+   Footer
+=========================== */
+footer {
+  background: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 16px;
+  margin-top: 40px;
+}
+
+footer .footer-links {
+  margin-top: 8px;
+}
+footer a {
+  color: var(--white);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 900px) {
+  header nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); padding: 12px 0; box-shadow: var(--shadow); }
+  header nav ul { flex-direction: column; gap: 10px; align-items: center; }
+  .menu-toggle { display: block; }
+}
+
+@media (max-width: 520px) {
+  .logo-text { display: none; }
+  .logo-img { width: 40px; height: 40px; }
+  .hero-slogan { font-size: 1.8rem; }
+}

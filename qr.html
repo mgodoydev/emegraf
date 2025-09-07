@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generador de QR - Simple</title>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --accent:#001BB7;
+      --muted:#566072;
+      --radius:12px;
+      --shadow: 0 8px 30px rgba(20,30,60,0.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin:0;
+      background:var(--bg);
+      color:#0f172a;
+      padding:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+
+    .container{
+      width:100%;
+      max-width:920px;
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;
+      align-items:start;
+    }
+
+    header{
+      grid-column: 1 / -1;
+      margin-bottom:6px;
+    }
+    h1{margin:0;font-size:1.2rem;color:var(--accent)}
+    p.lead{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+
+    /* form */
+    .controls{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    label{font-size:0.85rem;color:var(--muted)}
+    input[type="text"], input[type="url"], select {
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e6e9f0;
+      font-size:0.95rem;
+    }
+    .row {
+      display:flex;
+      gap:10px;
+    }
+    .small {
+      flex:0 0 120px;
+    }
+    .flex {
+      flex:1;
+    }
+
+    input[type="color"]{
+      width:48px;height:40px;padding:0;border-radius:8px;border:1px solid #e6e9f0;
+      background:#fff;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:6px;
+      flex-wrap:wrap;
+    }
+    button, a.btn {
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:transform .12s ease, box-shadow .12s;
+    }
+    button.secondary {
+      background:#f1f5ff;
+      color:var(--accent);
+      border:1px solid rgba(0,27,183,0.08);
+      font-weight:700;
+    }
+    button:active { transform:translateY(1px) }
+    .muted-btn {
+      background:#eef2ff;color:var(--muted);
+    }
+
+    /* preview card */
+    .preview{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:12px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      justify-content:flex-start;
+    }
+    .qr-box{
+      background: #fff;
+      padding:10px;
+      border-radius:8px;
+      box-shadow: 0 6px 18px rgba(11,15,40,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-width:220px;
+      min-height:220px;
+    }
+    .qr-box img{display:block; max-width:100%; height:auto}
+
+    .meta { font-size:0.9rem; color:var(--muted) }
+
+    footer.note{
+      grid-column:1 / -1;
+      margin-top:6px;
+      font-size:0.82rem;
+      color:var(--muted);
+    }
+
+    @media (max-width:920px){
+      .container{grid-template-columns: 1fr; padding:18px}
+      .preview{order:-1}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="application" aria-label="Generador de códigos QR">
+    <header>
+      <h1>Generador de QR — Web</h1>
+      <p class="lead">Escribí o pegá la URL y generá un QR. Podés ajustar tamaño, color y fondo, luego descargarlo.</p>
+    </header>
+
+    <!-- Controles -->
+    <section class="controls" aria-label="Controles de generación">
+      <label for="url">URL (ej: https://ejemplo.com)</label>
+      <input id="url" type="url" placeholder="https://..." value="https://">
+
+      <div class="row">
+        <div class="small">
+          <label for="size">Tamaño (px)</label>
+          <input id="size" type="number" min="128" max="2048" value="800">
+        </div>
+
+        <div class="flex">
+          <label for="format">Formato (para descarga)</label>
+          <select id="format">
+            <option value="png">PNG</option>
+            <option value="svg">SVG</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="align-items:center">
+        <div style="flex:1">
+          <label for="fg">Color del QR</label>
+          <input id="fg" type="color" value="#000000" title="Color del frente">
+        </div>
+        <div style="flex:1">
+          <label for="bg">Fondo</label>
+          <input id="bg" type="color" value="#ffffff" title="Color de fondo">
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:flex-end">
+        <button id="generate" title="Generar QR">Generar</button>
+        <button id="previewBtn" class="secondary" title="Abrir preview en nueva pestaña">Abrir en nueva pestaña</button>
+        <button id="copyUrl" class="secondary" title="Copiar imagen o URL">Copiar URL</button>
+      </div>
+
+      <div class="actions" style="margin-top:10px">
+        <button id="download" title="Descargar QR">Descargar</button>
+        <button id="clear" class="secondary" title="Limpiar">Limpiar</button>
+      </div>
+
+      <p style="margin-top:8px;font-size:0.86rem;color:var(--muted)">
+        Nota: el generador usa un servicio público para crear la imagen; si querés una versión 100% local podemos integrar una librería JS.
+      </p>
+    </section>
+
+    <!-- Preview -->
+    <aside class="preview" aria-label="Previsualización">
+      <div class="qr-box" id="qrBox" aria-live="polite">
+        <!-- aquí se insertará la imagen -->
+        <img id="qrImg" src="" alt="Previsualización del código QR" style="display:none">
+      </div>
+
+      <div style="text-align:center">
+        <div class="meta">URL generada: <span id="displayUrl" style="word-break:break-all">—</span></div>
+        <div class="meta" id="metaSize">Tamaño: —</div>
+      </div>
+    </aside>
+
+    <footer class="note">
+      <strong>Atajo:</strong> pegá una URL y apretá Enter para generar rápido.
+    </footer>
+  </div>
+
+  <script>
+    // Elementos
+    const urlInput = document.getElementById('url');
+    const sizeInput = document.getElementById('size');
+    const fgInput = document.getElementById('fg');
+    const bgInput = document.getElementById('bg');
+    const formatSelect = document.getElementById('format');
+
+    const generateBtn = document.getElementById('generate');
+    const downloadBtn = document.getElementById('download');
+    const clearBtn = document.getElementById('clear');
+    const previewBtn = document.getElementById('previewBtn');
+    const copyUrlBtn = document.getElementById('copyUrl');
+
+    const qrImg = document.getElementById('qrImg');
+    const displayUrl = document.getElementById('displayUrl');
+    const metaSize = document.getElementById('metaSize');
+
+    // Construye la URL del servicio (api.qrserver.com)
+    function buildQRUrl({data, size, fg, bg, format}) {
+      const s = Math.max(128, Math.min(2048, parseInt(size)||800));
+      const encoded = encodeURIComponent(data);
+      // El API soporta &size=WxH y &data=...
+      // Para colores usamos 'color' (hex sin #) y 'bgcolor' si el servicio lo acepta.
+      // Quitamos '#' y pasamos sin alpha.
+      const color = fg.replace('#','');
+      const bgcolor = bg.replace('#','');
+      const base = `https://api.qrserver.com/v1/create-qr-code/?size=${s}x${s}&data=${encoded}`;
+      // añado colores y formato si el servidor lo soporta
+      let url = base + `&color=${color}&bgcolor=${bgcolor}`;
+      if (format === 'svg') {
+        url += '&format=svg';
+      }
+      return url;
+    }
+
+    // Muestra en preview
+    async function renderPreview() {
+      const val = urlInput.value.trim();
+      if (!val) {
+        alert('Ingresá una URL válida.');
+        return;
+      }
+      const opts = {
+        data: val,
+        size: sizeInput.value,
+        fg: fgInput.value,
+        bg: bgInput.value,
+        format: formatSelect.value
+      };
+      const apiUrl = buildQRUrl(opts);
+      // para svg mostrará como imagen también
+      qrImg.src = apiUrl;
+      qrImg.style.display = 'block';
+      displayUrl.textContent = val;
+      metaSize.textContent = `Tamaño: ${opts.size}px • Formato: ${opts.format.toUpperCase()}`;
+    }
+
+    // Descarga la imagen (fetch -> blob -> descarga)
+    async function downloadImage() {
+      const val = urlInput.value.trim();
+      if (!val) { alert('Ingresá una URL válida.'); return; }
+      const opts = {
+        data: val,
+        size: sizeInput.value,
+        fg: fgInput.value,
+        bg: bgInput.value,
+        format: formatSelect.value
+      };
+      const apiUrl = buildQRUrl(opts);
+
+      try {
+        const res = await fetch(apiUrl);
+        if (!res.ok) throw new Error('No se pudo generar la imagen.');
+        const blob = await res.blob();
+        const ext = opts.format === 'svg' ? 'svg' : 'png';
+        const a = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = `qr_${Date.now()}.${ext}`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        alert('Error al descargar: ' + err.message);
+      }
+    }
+
+    // Abrir preview en nueva pestaña (útil para SVG)
+    function openInNewTab() {
+      const val = urlInput.value.trim();
+      if (!val) { alert('Ingresá una URL válida.'); return; }
+      const opts = {
+        data: val,
+        size: sizeInput.value,
+        fg: fgInput.value,
+        bg: bgInput.value,
+        format: formatSelect.value
+      };
+      const apiUrl = buildQRUrl(opts);
+      window.open(apiUrl, '_blank', 'noopener');
+    }
+
+    // Copiar URL generada al portapapeles
+    async function copyGeneratedUrl() {
+      const val = urlInput.value.trim();
+      if (!val) { alert('Ingresá una URL válida.'); return; }
+      const opts = {
+        data: val,
+        size: sizeInput.value,
+        fg: fgInput.value,
+        bg: bgInput.value,
+        format: formatSelect.value
+      };
+      const apiUrl = buildQRUrl(opts);
+      try {
+        await navigator.clipboard.writeText(apiUrl);
+        copyUrlBtn.textContent = 'Copiado ✓';
+        setTimeout(()=> copyUrlBtn.textContent = 'Copiar URL', 1500);
+      } catch(e){
+        alert('No se pudo copiar: ' + e.message);
+      }
+    }
+
+    // Listeners
+    generateBtn.addEventListener('click', renderPreview);
+    downloadBtn.addEventListener('click', downloadImage);
+    previewBtn.addEventListener('click', openInNewTab);
+    copyUrlBtn.addEventListener('click', copyGeneratedUrl);
+    clearBtn.addEventListener('click', ()=>{
+      urlInput.value = '';
+      qrImg.src = '';
+      qrImg.style.display = 'none';
+      displayUrl.textContent = '—';
+      metaSize.textContent = 'Tamaño: —';
+    });
+
+    // atajo: Enter en URL -> generar
+    urlInput.addEventListener('keydown', (e)=>{
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        renderPreview();
+      }
+    });
+
+    // sugerencia: si el campo solo tiene https://, seleccionarlo
+    urlInput.addEventListener('focus', () => {
+      if (urlInput.value.trim() === 'https://') {
+        urlInput.select();
+      }
+    });
+
+    // initial demo
+    // Ponemos una URL de ejemplo por defecto
+    urlInput.value = 'https://example.com';
+    renderPreview().catch(()=>{});
+  </script>
+</body>
+</html>

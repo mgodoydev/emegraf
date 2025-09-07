@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Emegraf</title>
 
-  <!-- FAVICONS (usa los archivos que crees en img/) -->
+  <!-- FAVICONS -->
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
@@ -25,6 +25,8 @@
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#gallery">Galería</a></li>
         <li><a href="#footer">Contacto</a></li>
       </ul>
     </nav>
@@ -33,39 +35,97 @@
   </header>
 
   <!-- HERO -->
-  <section id="inicio" class="hero">
-    <div>
-      <h1>Prestigio y calidad en sus impresos.</h1>
-      <p>Tarjetas, folletos, gigantografías y más—todo con estándar de calidad Emegraf.</p>
-    </div>
-  </section>
+<section id="inicio" class="hero">
+  <div class="hero-content">
+    <img src="img/emegraf.png" alt="Logo Emegraf" class="hero-logo">
+    <h1 class="hero-slogan">Prestigio y calidad en sus impresos</h1>
+    <p class="hero-description">
+      Tarjetas, folletos, gigantografías y más—todo con estándar de calidad Emegraf.
+    </p>
 
-  <!-- CARRUSEL -->
-  <section class="carrusel" aria-label="Trabajos recientes">
-    <div class="slider">
-      <div class="slides">
-        <img src="img/trabajo1.jfif" alt="Trabajo de impresión 1">
-        <img src="img/trabajo2.jpg" alt="Trabajo de impresión 2">
-        <img src="img/trabajo3.jpg" alt="Trabajo de impresión 3">
+    <!-- Botones -->
+    <div class="hero-buttons">
+      <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn">Cotizar ahora</a>
+      <a href="#gallery" class="btn btn-secondary">Ver trabajos</a>
+    </div>
+
+    <!-- Mini-cards con info rápida -->
+    <div class="hero-cards">
+      <div class="card-mini">
+        <strong>+30 años</strong>
+        <span>de experiencia</span>
+      </div>
+      <div class="card-mini">
+        <strong>1000+</strong>
+        <span>trabajos entregados</span>
+      </div>
+      <div class="card-mini">
+        <strong>Garantía</strong>
+        <span>de calidad profesional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="services">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="service-cards">
+      <div class="card">
+        🖨️
+        <h3>Impresión Offset</h3>
+        <p>Calidad profesional para libros, folletos, revistas y más.</p>
+      </div>
+      <div class="card">
+        🎨
+        <h3>Diseño Gráfico</h3>
+        <p>Diseños creativos que comunican y refuerzan tu marca.</p>
+      </div>
+      <div class="card">
+        📦
+        <h3>Packaging</h3>
+        <p>Empaques personalizados que hacen destacar tus productos.</p>
+      </div>
+      <div class="card">
+        📢
+        <h3>Cartelería</h3>
+        <p>Gigantografías, banners y señalética para tu empresa.</p>
       </div>
     </div>
   </section>
+
+<!-- CARRUSEL / GALERÍA -->
+<section id="gallery" class="carrusel" aria-label="Trabajos recientes">
+  <div class="gallery">
+    <img src="img/trabajo1.jfif" alt="Trabajo de impresión 1">
+    <img src="img/trabajo2.png" alt="Trabajo de impresión 2">
+    <img src="img/trabajo3.jfif" alt="Trabajo de impresión 3">
+    <img src="img/trabajo4.jfif" alt="Trabajo de impresión 4">
+  </div>
+</section>
 
   <!-- QUIÉNES SOMOS (resumen) -->
   <section class="about">
     <h2 class="section-title">Quiénes Somos</h2>
     <p class="section-lead">
-      Desde 1991 brindamos soluciones de impresión con tecnología moderna y un equipo comprometido.
+      Desde 1991 brindamos soluciones de impresión con tecnología moderna y un equipo comprometido.  
+      Hoy, bajo la dirección de Myriam y Gloria Molinas, continuamos el legado de Emeterio Molinas ofreciendo calidad y confianza.
     </p>
     <a class="btn" href="quienes-somos.html">Conocé más</a>
   </section>
 
+  <!-- CTA -->
+  <section class="cta">
+    <h2>¿Listo para imprimir con calidad?</h2>
+    <a href="#footer" class="btn">Solicitar presupuesto</a>
+  </section>
+
   <!-- CONTACTO -->
-  <section class="contact">
+  <section class="contact" id="contacto">
     <h2 class="section-title">Contacto</h2>
     <p class="section-lead">¿Querés cotizar un trabajo? Escribinos y te respondemos a la brevedad.</p>
     <a href="mailto:emegraf@gmail.com" class="btn" aria-label="Enviar Email a Emegraf">Escribir Email</a>
-    <a href="https://wa.me/595991686406" target="_blank" rel="noopener noreferrer"  class="btn" aria-label="Abrir WhatsApp de Emegraf">WhatsApp</a>
+    <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn" aria-label="Abrir WhatsApp de Emegraf">WhatsApp</a>
   </section>
 
   <!-- FOOTER -->
