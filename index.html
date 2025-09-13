@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Emegraf </title>
+  <title>Emegraf</title>
 
   <!-- FAVICONS -->
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
@@ -27,7 +27,7 @@
         <li><a href="quienes-somos.html">Quiénes Somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#gallery">Galería</a></li>
-        <li><a href="#footer">Contacto</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
 
@@ -35,37 +35,37 @@
   </header>
 
   <!-- HERO -->
-<section id="inicio" class="hero">
-  <div class="hero-content">
-    <img src="img/emegraf.png" alt="Logo Emegraf" class="hero-logo">
-    <h1 class="hero-slogan">Prestigio y calidad en sus impresos</h1>
-    <p class="hero-description">
-      Tarjetas, folletos, gigantografías y más—todo con estándar de calidad Emegraf.
-    </p>
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <img src="img/emegraf.png" alt="Logo Emegraf" class="hero-logo">
+      <h1 class="hero-slogan">Prestigio y calidad en sus impresos</h1>
+      <p class="hero-description">
+        Tarjetas, folletos, gigantografías y más—todo con estándar de calidad Emegraf.
+      </p>
 
-    <!-- Botones -->
-    <div class="hero-buttons">
-      <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn">Cotizar ahora</a>
-      <a href="#gallery" class="btn btn-secondary">Ver trabajos</a>
-    </div>
+      <!-- Botones -->
+      <div class="hero-buttons">
+        <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn">Cotizar ahora</a>
+        <a href="#gallery" class="btn btn-secondary">Ver trabajos</a>
+      </div>
 
-    <!-- Mini-cards con info rápida -->
-    <div class="hero-cards">
-      <div class="card-mini">
-        <strong>+30 años</strong>
-        <span>de experiencia</span>
-      </div>
-      <div class="card-mini">
-        <strong>1000+</strong>
-        <span>trabajos entregados</span>
-      </div>
-      <div class="card-mini">
-        <strong>Garantía</strong>
-        <span>de calidad profesional</span>
+      <!-- Mini-cards con info rápida -->
+      <div class="hero-cards">
+        <div class="card-mini">
+          <strong>+30 años</strong>
+          <span>de experiencia</span>
+        </div>
+        <div class="card-mini">
+          <strong>1000+</strong>
+          <span>trabajos entregados</span>
+        </div>
+        <div class="card-mini">
+          <strong>Garantía</strong>
+          <span>de calidad profesional</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- SERVICIOS -->
   <section id="servicios" class="services">
@@ -94,17 +94,21 @@
     </div>
   </section>
 
-<!-- CARRUSEL / GALERÍA -->
-<section id="gallery" class="carrusel" aria-label="Trabajos recientes">
-  <div class="gallery">
-    <img src="img/trabajo1.jfif" alt="Trabajo de impresión 1">
-    <img src="img/trabajo2.png" alt="Trabajo de impresión 2">
-    <img src="img/trabajo3.jfif" alt="Trabajo de impresión 3">
-    <img src="img/trabajo4.jfif" alt="Trabajo de impresión 4">
-  </div>
-</section>
+  <!-- GALERÍA -->
+  <section id="gallery" class="carrusel" aria-label="Trabajos recientes">
+    <div class="gallery">
+      <img src="img/imagen1.jpg" alt="Trabajo de impresión 1" loading="lazy">
+      <img src="img/imagen2.webp" alt="Trabajo de impresión 2" loading="lazy">
+      <img src="img/imagen3.png" alt="Trabajo de impresión 3" loading="lazy">
+      <img src="img/imagen4.jpg" alt="Trabajo de impresión 4" loading="lazy">
+      <img src="img/imagen6.jpg" alt="Trabajo de impresión 5" loading="lazy">
+      <img src="img/imagen7.png" alt="Trabajo de impresión 6" loading="lazy">
+      <img src="img/imagen8.jpg" alt="Trabajo de impresión 7" loading="lazy">
+      <img src="img/trabajo9.webp" alt="Trabajo de impresión 8" loading="lazy">
+    </div>
+  </section>
 
-  <!-- QUIÉNES SOMOS (resumen) -->
+  <!-- QUIÉNES SOMOS -->
   <section class="about">
     <h2 class="section-title">Quiénes Somos</h2>
     <p class="section-lead">
@@ -117,20 +121,49 @@
   <!-- CTA -->
   <section class="cta">
     <h2>¿Listo para imprimir con calidad?</h2>
-    <a <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn">Solicitar presupuesto</a>
+    <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn">Solicitar presupuesto</a>
   </section>
 
   <!-- CONTACTO -->
   <section class="contact" id="contacto">
     <h2 class="section-title">Contacto</h2>
     <p class="section-lead">¿Querés cotizar un trabajo? Escribinos y te respondemos a la brevedad.</p>
-    <a href="mailto:emegraf@gmail.com" class="btn" aria-label="Enviar Email a Emegraf">Escribir Email</a>
-    <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn" aria-label="Abrir WhatsApp de Emegraf">WhatsApp</a>
+    
+    <!-- Formulario -->
+  <form id="contact-form" action="https://formspree.io/f/tu_id" method="POST" class="contact-form">
+    <input type="text" name="nombre" placeholder="Tu nombre" required>
+    <input type="email" name="email" placeholder="Tu correo" required>
+    <textarea name="mensaje" rows="5" placeholder="Tu mensaje" required></textarea>
+    <button type="submit" class="btn">Enviar mensaje</button>
+    <p id="form-status" style="margin-top:12px;"></p>
+  </form>
+
+    <!-- Botones extra -->
+    <div class="contact-links">
+      <a href="mailto:emegraf@gmail.com" class="btn" aria-label="Enviar Email a Emegraf">Escribir Email</a>
+      <a href="https://wa.me/595981428449" target="_blank" rel="noopener noreferrer" class="btn" aria-label="Abrir WhatsApp de Emegraf">WhatsApp</a>
+    </div>
+
+    <!-- Mapa -->
+    <div class="map">
+      <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d536.0436271486823!2d-57.60069989140962!3d-25.335857657512435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2spy!4v1757774250803!5m2!1sen!2spy" 
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer">
+      </iframe>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer id="footer">
     <p>&copy; 2025 Emegraf — Todos los derechos reservados</p>
+    
+    <!-- <div class="social-links">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+      <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
+    </div> -->
   </footer>
 
   <script src="script.js"></script>

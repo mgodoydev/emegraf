@@ -1,17 +1,33 @@
-// Menú hamburguesa (mobile)
-const menuToggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("menu");
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
 
-if (menuToggle && menu){
-  menuToggle.addEventListener("click", () => {
-    const isOpen = getComputedStyle(menu).display !== "none";
-    menu.style.display = isOpen ? "none" : "block";
-  });
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const data = new FormData(form);
 
-  // Cerrar al elegir un enlace en mobile
-  menu.querySelectorAll("a").forEach(a=>{
-    a.addEventListener("click", ()=> { 
-      if (window.innerWidth <= 900) menu.style.display="none";
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(response) {
+        if (response.ok) {
+          status.textContent = "¡Mensaje enviado correctamente!";
+          status.style.color = "green";
+          form.reset();
+        } else {
+          status.textContent = "Hubo un error, intenta nuevamente.";
+          status.style.color = "red";
+        }
+      })
+      .catch(function(error) {
+        status.textContent = "Hubo un error, intenta nuevamente.";
+        status.style.color = "red";
+      });
     });
-  });
-}
+  }
+});
+
